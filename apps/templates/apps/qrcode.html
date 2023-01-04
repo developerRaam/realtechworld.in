@@ -1,0 +1,46 @@
+{% extends 'apps/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<!-- Left Siderbar  -->
+    <section>
+        <div class="row">
+            <div class="col-md-3">
+                
+                {% include 'apps/left-sidebar.html' %}
+
+            </div>
+            <div class="col-md-9 mb-3 tool-content">
+                <div class="px-3">
+                    <h2 class="py-5">Qrcode Generator</h2>
+                    <div class="mb-2">
+                       <div>
+                        <form action="{% url 'qrcode' %}" method="post">
+                            {% csrf_token %}
+                            <div class="mb-2">
+                                <label for="">Enter your text</label>
+                                <input type="text" name="qr_text" class="form-control" placeholder="Enter text for generate qrcode" required>
+                            </div>
+                            <div class="mb-2">
+                                <input type="submit" name="submit" class="btn btn-success" value="Submit">
+                            </div>
+                        </form>
+                        {% if qr_output %}
+                        <div class="mt-3">
+                            <h2>Output:</h2>
+                            <div class="d-flex justify-content-center p-2">
+                                <div class="col-md-8 text-center">
+                                    <img class="border" height="300" src="{{qr_output}}" alt="{{qr_output}}"><br>
+                                    <a href="{{qr_output}}" class="btn btn-primary mt-3" download>Download Qr</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

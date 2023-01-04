@@ -1,0 +1,35 @@
+{% extends 'apps/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Left Siderbar  -->
+    <section>
+        <div class="row">
+            <div class="col-md-3">
+                
+                {% include 'apps/left-sidebar.html' %}
+
+            </div>
+
+            <div class="col-md-9 py-2 tool-content">
+                <div class="px-1">
+                    <div class="d-flex justify-content-between mb-3">
+                        <h2>Color Palette</h2>
+                        <p><span class="copyText"></span></p>
+                    </div>
+                    <div class="my-2 mt-1">
+                       <div class="row gy-2">
+                            {% for data in colors %}
+                            <div class="col-md-6 col-lg-4">
+                                <p class="p-3" style="background-color:{{data.color}}">{{data.color_name}} 
+                                <span class="ms-2 user-select-all color-pallete" onclick="copyToClipboard('{{data.color}}')">{{data.color}}</span>
+                                </p>
+                            </div>
+                            {% endfor %}
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

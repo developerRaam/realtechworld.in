@@ -1,0 +1,25 @@
+{% extends 'apps/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<!-- Left Siderbar  -->
+    <section>
+        <div class="row">
+            <div class="col-md-3">
+                
+                {% include 'apps/left-sidebar.html' %}
+
+            </div>
+            <div class="col-md-9 mb-3 tool-content">
+                <div class="px-3">
+                    <h2 class="py-5">Word Count</h2>
+                    <div class="mb-2">
+                        <textarea id="word-count" class="form-control" rows="10" oninput="countWord()" placeholder="Start Typing here..."></textarea>
+                        <p class="text-muted">Word count: <span id="w_count">0</span> Character count: <span id="char_count">0</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

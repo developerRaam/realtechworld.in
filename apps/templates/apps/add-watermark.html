@@ -1,0 +1,56 @@
+{% extends 'apps/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<!-- Left Siderbar  -->
+    <section>
+        <div class="row">
+            <div class="col-md-3">
+                
+                {% include 'apps/left-sidebar.html' %}
+
+            </div>
+            <div class="col-md-9 py-2">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="px-3">
+                        <h2>Add watermark on image</h2>
+                        <form action="{% url 'add-watermark' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="mb-2">
+                                <label for="">Enter your text</label>
+                                <input type="text" name="w_text" class="form-control" required>
+                            </div>
+                            <div class="mb-2">
+                                <label for="">Upload image</label>
+                                <input type="file" name="image" class="form-control" required>
+                            </div>
+                            <!--Error message-->
+                            <div>
+                                {% if error %}
+                                    <p class="text-danger">{{error}}</p>
+                                {% endif %}
+                            </div>
+                            <div class="mb-2">
+                                <input type="submit" name="submit" class="btn btn-success" value="Submit">
+                            </div>
+                        </form>
+                        {% if output_path %}
+                        <div class="mt-3">
+                            <h2>Output:</h2>
+                            <div class="d-flex justify-content-center p-2">
+                                <div class="col-md-8 text-center">
+                                    <img class="w-100" src="{{output_path}}" alt="{{output_path}}">
+                                    <a href="{{output_path}}" class="btn btn-primary mt-3" download>Download Image</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

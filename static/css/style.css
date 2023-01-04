@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Work+Sans:wght@400;500;600;700&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Work Sans", sans-serif;
+}
+
+html {
+  /* font-size: 62.5%;
+  1rem = 10px */
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+}
+
+
+.main-title {
+  text-transform: uppercase;
+  letter-spacing: 6px;
+}
+
+/*================ Siderbar ==============*/
+.siderbar_btn{
+  list-style: none;
+}
+.siderbar_btn a{
+  color: #ddd;
+  text-decoration: none;
+  display: block;
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding-left: 10px;
+}
+.siderbar_btn a:hover{
+  cursor: pointer;
+  background: repeating-linear-gradient(45deg, black, #00000082 100px);
+}
+.siderbar_btn .arrow{
+  float: right;
+  font-size: 2rem;
+}
+
+
+/*====== Color Picker =========*/
+
+span.copyText {
+    margin-left: -110px;
+    position: fixed;
+    padding: 5px 30px 5px 30px;
+    color: #fff;
+    font-size: 19px;
+    z-index: 999;
+    top: 70px;
+}
+
+/*========== tools card ===========*/
+.card:hover{
+  box-shadow: 0px 0px !important;
+  cursor: pointer;
+}
+.card-link{
+  overflow-x: hidden;
+  text-decoration: none;
+  color: #000;
+}

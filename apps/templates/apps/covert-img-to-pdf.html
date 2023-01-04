@@ -1,0 +1,52 @@
+{% extends 'apps/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<!-- Left Siderbar  -->
+    <section>
+        <div class="row">
+            <div class="col-md-3">
+                
+                {% include 'apps/left-sidebar.html' %}
+
+            </div>
+            <div class="col-md-9 mb-3 tool-content">
+                <div class="px-3">
+                    <h2 class="py-5">Qrcode Generator</h2>
+                    <div class="mb-2">
+                       <div>
+                            <form action="{% url 'imageTopdf' %}" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="mb-2">
+                                    <label for="">Upload Image (<small>Upload image only less than 5MB)</small></label>
+                                    <input type="file" name="image" accept=".jpg, .png, .jpeg" class="form-control" required>
+                                </div>
+                                <!--Error message-->
+                                <div>
+                                    {% if error %}
+                                        <p class="text-danger">{{error}}</p>
+                                    {% endif %}
+                                </div>
+                                <div class="mb-2">
+                                    <input type="submit" name="submit" class="btn btn-success" value="Submit">
+                                </div>
+                            </form>
+                            {% if pdf_output %}
+                            <div class="mt-3">
+                                <h2>Output:</h2>
+                                <div class="d-flex justify-content-center p-2">
+                                    <div class="col-md-8 text-center">
+                                        <embed src="{{pdf_output}}" type="application/pdf" width="300px" height="300px" /><br>
+                                        <a href="http://127.0.0.1:8000/{{pdf_output}}" class="btn btn-primary mt-3" download>Download PDF</a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
