@@ -1,0 +1,39 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <table class="dataTable " id="dataTable ">
+        <thead>
+            <tr>
+                <th>Country</th>
+                <th>Slug</th>
+                <th>ISO2</th>
+            </tr>
+        </thead>
+        {% for data in response %}
+        <tbody>
+            <tr>
+                <td>{{data.Country}}</td>
+                <td>{{data.Slug}}</td>
+                <td>{{data.ISO2}}</td>
+            </tr>
+        </tbody>
+        
+        {% endfor %}
+    </table>
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready( function () {
+            $('#dataTable').DataTable();
+        } );
+    </script>
+</body>
+</html>

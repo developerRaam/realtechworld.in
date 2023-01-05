@@ -3,9 +3,10 @@ from .models import *
 from PIL import Image, ImageDraw, ImageFont
 from mimetypes import MimeTypes
 import qrcode
-import os, random, math
+import os, random, math, requests
 from datetime import datetime
 from django.contrib import messages
+from django.core.paginator import Paginator
 # Create your views here.
 
 #==============================  Home ==========================================
@@ -60,7 +61,13 @@ def WordCount(request):
 #==============================  Color picker ==========================================
 def ColorPicker(request):
     colors = Color.objects.all()
-    return render(request, "apps/color-picker.html",{'colors':colors})
+    paginator = Paginator(colors, 2)  # Show 2 objects per page
+    page = request.GET.get('page')
+    colors = paginator.get_page(page)
+    context = {
+        'colors':colors,
+    }
+    return render(request, "apps/color-picker.html",context)
 
 #==============================  Generate qrcode ==========================================
 def GenerateQrcode(request):
@@ -108,3 +115,7 @@ def ImageToPdf(request):
         else:
             return render(request, "apps/covert-img-to-pdf.html",{'error':'Please choose PNG, JPG, JPEG file'})
     return render(request, "apps/covert-img-to-pdf.html")
+
+def BoxShadow(request):
+    response = requests.get("https://api.covid19api.com/countries").json()
+    return render(request, "apps/box-shadow.html",{'response':response})

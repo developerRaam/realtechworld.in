@@ -9,5 +9,6 @@ urlpatterns = [
     path("word-count/",views.WordCount, name="word-count"),
     path("color-picker/",views.ColorPicker),
     path("generate-qrcode/",views.GenerateQrcode, name="qrcode"),
-    path("convert-image-to-pdf/",views.ImageToPdf, name="imageTopdf")
-,]
+    path("convert-image-to-pdf/",views.ImageToPdf, name="imageTopdf"),
+    path("box-shadow/",views.BoxShadow),
+]
