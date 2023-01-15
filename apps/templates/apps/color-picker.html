@@ -1,5 +1,10 @@
-{% extends 'apps/base.html' %}
+{% extends 'base.html' %}
+{% block header %}
+    {% include "header.html" %}
+{% endblock header %}
 {% load static %}
+
+{% block title %}Color Picker | {{site_name}}{% endblock %}
 
 {% block content %}
 <!-- Left Siderbar  -->
@@ -19,7 +24,7 @@
                     </div>
                     <div class="my-2 mt-1">
                        <div class="row gy-2">
-                            {% for data in colors %}
+                            {% for data in objects %}
                             <div class="col-md-6 col-lg-4">
                                 <p class="p-3" style="background-color:{{data.color}}">{{data.color_name}} 
                                 <span class="ms-2 user-select-all color-pallete" onclick="copyToClipboard('{{data.color}}')">{{data.color}}</span>
@@ -29,7 +34,7 @@
                        </div>
                        
                        <!--pagination-->
-                       {% include 'apps/pagination.html' %}
+                       {% include 'pagination.html' %}
                        
                     </div>
                 </div>

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block header %}
+    {% include "header.html" %}
+{% endblock header %}
+{% load static %}
+
+
+{% block content %}
+<!-- Left Siderbar  -->
+    <section>
+        <div class="row">
+            <div class="col-md-3">
+                
+                {% include 'apps/left-sidebar.html' %}
+
+            </div>
+            <div class="col-md-9 mb-3 tool-content">
+                <div class="px-3">
+                    <h2 class="py-5">Amazon Product</h2>
+                    <div class="mb-2">
+                        {% for data in output %}
+                            {{data}}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

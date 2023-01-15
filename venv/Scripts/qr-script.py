@@ -1,4 +1,4 @@
-#!F:\Django\realtechworld\venv\Scripts\python.exe
+#!D:\Django\realtechworld\venv\Scripts\python.exe
 # EASY-INSTALL-ENTRY-SCRIPT: 'qrcode==7.3.1','console_scripts','qr'
 import re
 import sys

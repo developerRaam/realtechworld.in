@@ -1,6 +1,10 @@
-{% extends 'apps/base.html' %}
+{% extends 'base.html' %}
+{% block header %}
+    {% include "header.html" %}
+{% endblock header %}
 {% load static %}
 
+{% block title %}Convert image to pdf| {{site_name}}{% endblock %}
 
 {% block content %}
 <!-- Left Siderbar  -->
@@ -13,7 +17,7 @@
             </div>
             <div class="col-md-9 mb-3 tool-content">
                 <div class="px-3">
-                    <h2 class="py-5">Qrcode Generator</h2>
+                    <h2 class="py-5">Convert image to pdf</h2>
                     <div class="mb-2">
                        <div>
                             <form action="{% url 'imageTopdf' %}" method="post" enctype="multipart/form-data">

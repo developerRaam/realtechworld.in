@@ -7,6 +7,7 @@ import os, random, math, requests
 from datetime import datetime
 from django.contrib import messages
 from django.core.paginator import Paginator
+import boto3
 # Create your views here.
 
 #==============================  Home ==========================================
@@ -17,15 +18,25 @@ def Home(request):
 def Tools(request):
     return render(request, "apps/tools.html")
 
+
+#==============================  All tools ==========================================
+def ContactUs(request):
+    return render(request, "contact-us.html")
+
+
+#==============================  All tools ==========================================
+def AboutUs(request):
+    return render(request, "about-us.html")
+
 #==============================  Add watermark ==========================================
 def CopyrightApply(input_path, text)->str:
     photo = Image.open(input_path)
     w,h = photo.size
     drawing = ImageDraw.Draw(photo)
     text = f"© {text} "
-    font = ImageFont.truetype('ANTQUAB.TTF',20)
+    font = ImageFont.truetype('ANTQUAB.TTF',30)
     text_w, text_h = drawing.textsize(text, font)
-    pos = w - text_w, (h - text_h) - 5
+    pos = w - text_w, (h - text_h) - 10
     c_text = Image.new('RGB', (text_w, text_h), color="#000000")
     drawing = ImageDraw.Draw(c_text)
     drawing.text((0,0), text, fill="#fff" , font=font)
@@ -45,9 +56,9 @@ def AddWatermark(request):
         size = image.size
         if size <= 5242931: #check size of file
             w_text = request.POST.get('w_text')
-            image = AddImageWaterMark.objects.create(image=image, watermark_text=w_text)
-            image.save()
-            output_path = CopyrightApply(f'static/images/{image.image}',w_text)
+            water_text = AddImageWaterMark.objects.create(watermark_text=w_text)
+            water_text.save()
+            output_path = CopyrightApply(image,w_text)
             return render(request, "apps/add-watermark.html",{'output_path':output_path})
         else:
             return render(request, "apps/add-watermark.html",{'error':'Please upload image only less than 5MB'})
@@ -61,11 +72,13 @@ def WordCount(request):
 #==============================  Color picker ==========================================
 def ColorPicker(request):
     colors = Color.objects.all()
+    
     paginator = Paginator(colors, 2)  # Show 2 objects per page
     page = request.GET.get('page')
-    colors = paginator.get_page(page)
+    objects = paginator.get_page(page)
+    
     context = {
-        'colors':colors,
+        'objects':objects,
     }
     return render(request, "apps/color-picker.html",context)
 
@@ -119,3 +132,46 @@ def ImageToPdf(request):
 def BoxShadow(request):
     response = requests.get("https://api.covid19api.com/countries").json()
     return render(request, "apps/box-shadow.html",{'response':response})
+
+#==============================  Generate password ==========================================
+def GeneratePassword(request):
+    lower="abcdefghijklmnopqrstwxyz"
+    upper="ABCDEFGHIKJLMNOPQRSTWXYZ"
+    number="0123456789"
+    symbol="=@#$%-;:"
+    all=lower+upper+number+symbol
+    length=8
+    password="".join(random.sample(all,length))
+    password = str(password)
+    return render(request, "apps/generate-password.html",{'password':password})
+
+
+# def AmazonProduct(request):
+#     client = boto3.client('product-advertising-api', region_name='in', 
+#                       aws_access_key_id='<YOUR ACCESS KEY>', 
+#                       aws_secret_access_key='<YOUR SECRET KEY>')
+
+#     response = client.search_items(
+#         SearchIndex='All',
+#         Keywords='<YOUR SEARCH TERM>',
+#         ResponseGroup='Images,ItemAttributes'
+#     )
+
+#     items = response['SearchResult']['Items']
+#     return render(request, "apps/amazon.html",{'items':items})
+
+def AmazonProduct(request):
+    url = "https://moviesminidatabase.p.rapidapi.com/movie/id/%7Bmovie_id%7D/cast/"
+
+    headers = {
+        "X-RapidAPI-Key": "dae72491b3msh5707c93e51f27e5p13a81bjsnfc0d8b1a1101",
+        "X-RapidAPI-Host": "moviesminidatabase.p.rapidapi.com"
+    }
+
+    response = requests.request("GET", url, headers=headers)
+
+    output = response.text
+    
+    return render(request, "apps/amazon.html",{'output':output})
+
+

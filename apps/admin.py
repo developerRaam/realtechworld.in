@@ -4,3 +4,4 @@ from .models import *
 # Register your models here.
 admin.site.register(Color)
 admin.site.register(Qrcode)
+admin.site.register(AddImageWaterMark)

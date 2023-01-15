@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" >
+   <head>
+      <!-- Basic -->
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <!-- Mobile Metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+      <!-- Site Metas -->
+      <meta name="keywords" content="Real Tech World, web development, web development company, website development, software company, software company , software company in  up, best software company , school software company , top software company, mlm software company, bulk sms provider, web design, web design company, bloggig, provide tools, blog, blogg" />
+
+      <meta name="description" content="We provide web development services are professional services that design, develop, and maintain websites. These services can include the creation of custom websites, redesigns of existing websites, ongoing maintenance and updates, and the integration of additional features such as e-commerce, social media, and analytics.</p>" />
+      <meta name="author" content="realtechworld.in" />
+      <link rel="shortcut icon" type="image/png" href="{% static 'images/logo/logo.jpg' %}">
+      <title>{% block title %}{% endblock %}</title>
+      <!-- bootstrap core css -->
+      <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />
+      <!-- Custom styles for this template -->
+      <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+      <link href="{% static 'css/navigation.css' %}" rel="stylesheet" />
+      <script src="{% static 'js/jquery.min.js' %}"></script>
+   </head>
+   <body>
+      {% block header %} {% endblock header %}
+      {% block content %} {% endblock content %}
+    {% include "footer.html" %}
+
+    <!-- ======================================== 
+          Our JavaScript ionicons Start  
+    ========================================  -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+ <!-- bootstrap js -->
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"</script>
+ <script src="{% static 'js/bootstrap.min.js' %} "></script>
+ <!-- custom js -->
+ <script src="{% static 'js/custom.js' %} "></script>
+ <script src="{% static 'js/pagination.js' %} "></script>
+</body>
+</html>
+

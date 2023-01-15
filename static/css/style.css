@@ -28,6 +28,18 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 6px;
 }
 
+/*========== Slider =============*/
+
+.rtw-header-slider{
+  position: relative;
+  width: 100%;
+}
+.rtw-header-slider .rtw-banner-text{
+  position: absolute;
+  top: 27%;
+  background-color: rgb(2 2 2 / 38%);
+}
+
 /*================ Siderbar ==============*/
 .siderbar_btn{
   list-style: none;
@@ -50,7 +62,15 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 2rem;
 }
 
-
+.card{
+  border: none !important;
+}
+.rtw-border-bottom{
+  border-bottom:1px solid #ddd;
+}
+.rtw-border-bottom:last-child{
+  border-bottom:none;
+}
 /*====== Color Picker =========*/
 
 span.copyText {
@@ -72,4 +92,36 @@ span.copyText {
   overflow-x: hidden;
   text-decoration: none;
   color: #000;
+}
+
+/*============ Generate password =============*/
+.i_button{
+    background-color: #00000075;
+    padding: 1px 7px;
+    border-radius: 50%;
+    color: #ddd;
+}
+
+/*=================================================== 
+                        BLogs
+====================================================*/
+.blog-post-btn:hover{
+  color: red !important;
+}                        
+
+/*============ Comments ================*/
+.rtw_input_box{
+  padding: 10px;
+}
+.rtw_input_box:focus{
+  border-color: #000;
+  box-shadow: none;
+  background-color: #dddddd80;
+}
+.rtw_input_box::placeholder{
+  color: rgb(4, 163, 190);
+  top:0;
+}
+.rtw_visited_link:visited{
+  color: blue !important;
 }

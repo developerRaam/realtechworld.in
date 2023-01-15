@@ -1,6 +1,10 @@
-{% extends 'apps/base.html' %}
+{% extends 'base.html' %}
+{% block header %}
+    {% include "header.html" %}
+{% endblock header %}
 {% load static %}
 
+{% block title %}Count words | {{site_name}}{% endblock %}
 
 {% block content %}
 <!-- Left Siderbar  -->

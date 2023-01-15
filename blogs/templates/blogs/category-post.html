@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+    {% include "header-blog.html" %}
+{% endblock header %}
+
+{% block title %} {{category_name}} | {{site_name}}{% endblock %}
+
+{% block content %}
+
+    <section style="background: #fff">
+        <div class="container-fluid">
+            <div class="row pt-3">
+                <div class="col-md-9">
+
+                    {% include 'blogs/card-item.html' %}
+
+                    <div>
+                        {% include "pagination.html" %}
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div>
+                        {% include 'blogs/sidebar.html' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}

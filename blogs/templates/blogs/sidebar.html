@@ -1,0 +1,51 @@
+<!--Search bar-->
+<div class="card mb-2">
+    <div class="card-body pt-0">
+        <form action="{% url 'searching' %}" method="get">
+            <div class="d-flex">
+                <input class="form-control rtw_input_box" type="text" name="q" placeholder="search here..." value="{{search_bar}}">
+                <button type="submit" class="border-0 bg-transparent fs-4" style="margin-left:-2rem">
+                    <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--Right side content-->
+<h5 class="mt-4">Read Post</h5>
+<div class="card mb-2">
+    <div class="card-body pt-0">
+        {% for data in side_bar_title %}
+        <div class="rtw-border-bottom py-2">
+            <a class="text-decoration-none text-dark blog-post-btn rtw_visited_link" href="{% url 'blog-detail' slug=data.slug %}">{{data.title}}</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!--Category-->
+<h5 class="mt-4">Category</h5>
+<div class="card mb-3">
+    <div class="card-body pt-0">
+        {% for data in blog_category %}
+            <div class="rtw-border-bottom py-2">
+                <a class="text-decoration-none blog-post-btn text-dark rtw_visited_link" href="{% url 'category' cat_slug=data.slug %}">{{data.category_name}}</a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% comment %} <!--Filter year wise-->
+{% if month_date %}
+<h2 class="mt-4">Months</h2>
+<div class="card">
+    <div class="card-body pt-0">
+        {% for data in month_date %}
+            <div class="border-bottom py-2">
+                <a class="text-decoration-none blog-post-btn text-dark" href="">{{data}}</a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %} {% endcomment %}

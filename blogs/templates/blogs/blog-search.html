@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+    {% include "header-blog.html" %}
+{% endblock header %}
+
+{% block title %} {{search_bar}} | {{site_name}}{% endblock %}
+
+{% block content %}
+
+    <section>
+        <div class="container-fluid">
+            <div class="row pt-3">
+                <div class="col-md-9">
+                    
+                    {% include 'blogs/card-item.html' %}
+
+                </div>
+                <div class="col-md-3">
+                    {% include 'blogs/sidebar.html' %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}

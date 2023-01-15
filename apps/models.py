@@ -1,12 +1,15 @@
 from django.db import models
 import uuid
 # Create your models here.
+#uid = models.UUIDField(unique=True, default=uuid.uuid4, editable=False)
 
 class AddImageWaterMark(models.Model):
-    uid = models.UUIDField(unique=True, default=uuid.uuid4, editable=False)
-    image = models.ImageField(upload_to="add_watermark")
     watermark_text = models.CharField(max_length=100)
     on_date = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.watermark_text
+    
     
 class Color(models.Model):
     color_name = models.CharField(max_length=50,null=True, blank=True)

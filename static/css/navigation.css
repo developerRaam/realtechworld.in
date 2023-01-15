@@ -31,6 +31,7 @@
 .navbar-link:hover,
 .navbar-link:active {
   color: #ddd;
+  border-bottom: 1px solid red;
 }
 
 .mobile-navbar-btn {
