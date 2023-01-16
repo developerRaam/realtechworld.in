@@ -1,6 +1,6 @@
 <!--Search bar-->
 <div class="card mb-2">
-    <div class="card-body pt-0">
+    <div>
         <form action="{% url 'searching' %}" method="get">
             <div class="d-flex">
                 <input class="form-control rtw_input_box" type="text" name="q" placeholder="search here..." value="{{search_bar}}">
@@ -15,9 +15,10 @@
 <!--Right side content-->
 <h5 class="mt-4">Read Post</h5>
 <div class="card mb-2">
-    <div class="card-body pt-0">
+    <div>
         {% for data in side_bar_title %}
-        <div class="rtw-border-bottom py-2">
+        <div class="d-flex rtw-border-bottom py-2">
+            <i class="fa-sharp fa-solid fa-angle-right me-2 mt-1"></i>
             <a class="text-decoration-none text-dark blog-post-btn rtw_visited_link" href="{% url 'blog-detail' slug=data.slug %}">{{data.title}}</a>
         </div>
         {% endfor %}
@@ -27,9 +28,10 @@
 <!--Category-->
 <h5 class="mt-4">Category</h5>
 <div class="card mb-3">
-    <div class="card-body pt-0">
+    <div>
         {% for data in blog_category %}
-            <div class="rtw-border-bottom py-2">
+            <div class="d-flex rtw-border-bottom py-2">
+                <i class="fa-sharp fa-solid fa-angle-right me-2 mt-1"></i>
                 <a class="text-decoration-none blog-post-btn text-dark rtw_visited_link" href="{% url 'category' cat_slug=data.slug %}">{{data.category_name}}</a>
             </div>
         {% endfor %}
@@ -40,7 +42,7 @@
 {% if month_date %}
 <h2 class="mt-4">Months</h2>
 <div class="card">
-    <div class="card-body pt-0">
+    <div>
         {% for data in month_date %}
             <div class="border-bottom py-2">
                 <a class="text-decoration-none blog-post-btn text-dark" href="">{{data}}</a>
