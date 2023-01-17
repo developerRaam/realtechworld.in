@@ -10,78 +10,32 @@
 <!-- product section -->
 {% include 'apps/slider.html' %}
 
-
-<!-- Our Services -->
-<section class="bg-light py-5" id="our-services">
-    <div class="py-5 text-center">
-        <h1 class="main-title mb-5">Our Services</h3>
-    </div>
-    <div class="container">
-        <div class="row">
+<!-- Blogs -->
+<section class="bg-light w-100">
+    <div class="container py-4">
+        <div class="row gy-4">
+            {% if home_blog %}
+            {% for data in home_blog %}
             <div class="col-md-4">
-                <div class="card h-100">
-                    <img class="100" height="250" src="{% static 'images/service1.jpg' %}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h2 class="text-uppercase text-center fs-6 mt-2 mb-3">Static website development</h2>
-                      <p class="card-text">Static web development refers to the building of websites using only HTML, CSS, and JavaScript. These websites do not require a database or any server-side code, and the content is delivered directly to the user's browser.</p>
-                    </div>
+                <a class="text-dark text-decoration-none" href="{% url 'blog-detail' slug=data.slug %}">
+                <div class="card text-start h-100 shadow-sm">
+                  <img class="card-img-top" height="300" src="{{data.image.url}}" alt="{{data.title}}">
+                  <div class="card-body">
+                    <h4 class="card-title fs-5">{{data.title}}</h4>
+                    <p class="card-text">{{data.sub_title|slice:150}}...</p>
                   </div>
+                </div>
+            </a>
             </div>
-            <div class="col-md-4">
-                <div class="card h-100">
-                    <img class="100" height="250" src="{% static 'images/service2.jpg' %}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h2 class="text-uppercase text-center fs-6 mt-2 mb-3">Dynamic website development</h2>
-                      <p class="card-text">Dynamic web development refers to the building of websites using server-side languages and databases. These websites can change content and behavior based on user interactions and data from the server.</p>
-                    </div>
-                  </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card h-100">
-                    <img class="100" height="250" src="{% static 'images/seo.jpg' %}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h2 class="text-uppercase text-center fs-6 mt-2 mb-3">SEO (Search Engine Optimization)</h2>
-                      <p class="card-text">Search Engine Optimization (SEO) is the process of improving the visibility of a website in search engine results pages (SERPs). The goal of SEO is to increase the quantity and quality of traffic to a website from search engines like Google, Bing, and Yahoo.</p>
-                    </div>
-                  </div>
-            </div>
+            {% endfor %}
+            {% endif %}
         </div>
+        <p class="text-center mt-3">
+            <a class="btn btn-primary px-3 p-2" href="/blogs">Read More</a>
+        </p>
     </div>
 </section>
 
-<!-- Web serices -->
-<section class="py-5 bg-dark">
-    <div class="text-light text-center" style="margin-top:5rem;margin-bottom:5rem;">
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <h1 class="fs-3 mb-3">Are you looking for Web Services?</h1>
-                <p class= "">We provide web development services are professional services that design, develop, and maintain websites. These services can include the creation of custom websites, redesigns of existing websites, ongoing maintenance and updates, and the integration of additional features such as e-commerce, social media, and analytics.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Our Portfolio -->
-<section class="bg-light py-5" id="our-portfolio">
-    <div class="py-5 text-center">
-        <h1 class="main-title mb-5">Our Portfolio</h3>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card h-100">
-                    <img class="100" src="{% static 'images/service2.jpg' %}" class="card-img-top" alt="...">
-                  </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card h-100">
-                    <img class="100" src="{% static 'images/service3.jpg' %}" class="card-img-top" alt="...">
-                  </div>
-            </div>
-        </div>
-    </div>
-</section>
 
  <!-- end subscribe section -->
 {% endblock content %}

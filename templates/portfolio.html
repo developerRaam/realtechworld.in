@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+    {% include "header.html" %}
+{% endblock header %}
+{% block title %}Our Portfolio | {{site_name}}{% endblock %}
+
+
+{% block content %}
+
+<!-- Our Portfolio -->
+<section class="bg-light py-5" id="our-portfolio">
+    <div class="py-5 text-center">
+        <h1 class="main-title mb-5">Our Portfolio</h3>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <img class="100" src="{% static 'images/service2.jpg' %}" class="card-img-top" alt="...">
+                  </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <img class="100" src="{% static 'images/service3.jpg' %}" class="card-img-top" alt="...">
+                  </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

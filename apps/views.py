@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect,HttpResponse
 from .models import *
+from blogs.models import BlogPost
 from PIL import Image, ImageDraw, ImageFont
 from mimetypes import MimeTypes
 import qrcode
@@ -12,7 +13,11 @@ import boto3
 
 #==============================  Home ==========================================
 def Home(request):
-    return render(request, "apps/home.html")
+    home_blog = BlogPost.objects.all().order_by('-on_date')[0:6]
+    context = {
+        'home_blog':home_blog
+    }
+    return render(request, "apps/home.html",context)
 
 #==============================  All tools ==========================================
 def Tools(request):
@@ -21,12 +26,34 @@ def Tools(request):
 
 #==============================  All tools ==========================================
 def ContactUs(request):
+    if request.method == 'POST':
+        name = request.POST['name']
+        email = request.POST['email']
+        mobile = request.POST['mobile']
+        message = request.POST['message']
+
+        try:
+            insert = ContactUS.objects.create(name=name,email=email,Contact=mobile,message=message)
+            insert.save()
+            messages.success(request, "Message send")
+            return redirect('contact-us')
+        except:
+            messages.warning(request, "Message sending failed")
+            return redirect('contact-us')
     return render(request, "contact-us.html")
 
 
 #==============================  All tools ==========================================
 def AboutUs(request):
     return render(request, "about-us.html")
+
+#==============================  All tools ==========================================
+def Services(request):
+    return render(request, "services.html")
+
+#==============================  All tools ==========================================
+def Portfolio(request):
+    return render(request, "portfolio.html")
 
 #==============================  Add watermark ==========================================
 def CopyrightApply(input_path, text)->str:
@@ -173,5 +200,3 @@ def AmazonProduct(request):
     output = response.text
     
     return render(request, "apps/amazon.html",{'output':output})
-
-

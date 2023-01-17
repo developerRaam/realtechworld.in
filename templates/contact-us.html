@@ -20,14 +20,14 @@
             {{message}}
         </div>
         {% endfor %}
-            <form action="" method="post">
+            <form action="{% url 'contact-us' %}" method="post">
                 {% csrf_token %}
                 <div class="d-flex justify-content-center py-2 fs-6">
                     <div class="col-md-8">
                         <input class="form-control rtw_input_box fs-6 py-3 mb-3 rounded-0" type="text" autocomplete="off" name="name" placeholder="ENTER YOUR NAME" required>
                         <input class="form-control rtw_input_box fs-6 py-3 mb-3 rounded-0" type="email" autocomplete="off" name="email" placeholder="ENTER YOUR EMAIL" >
                         <input class="form-control rtw_input_box fs-6 py-3 mb-3 rounded-0" type="number" autocomplete="off" name="mobile" placeholder="ENTER YOU MOBILE" required>
-                        <textarea class="form-control rtw_input_box mt-3 p-2 rounded-0" name="comment" autocomplete="off" cols="54" rows="8" placeholder="ENTER YOUR MESSAGE" style="border:1px solid #ddd;resize:none" required></textarea>
+                        <textarea class="form-control rtw_input_box mt-3 p-2 rounded-0" name="message" autocomplete="off" cols="54" rows="8" placeholder="ENTER YOUR MESSAGE" style="border:1px solid #ddd;resize:none" required></textarea>
                         <div class="w-100 text-center">
                             <input type="submit" class="btn btn-danger fs-6 mt-3 text-uppercase " name="submit" value="Submit">
                         </div>

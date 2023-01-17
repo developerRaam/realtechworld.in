@@ -37,7 +37,17 @@ h1, h2, h3, h4, h5, h6 {
 .rtw-header-slider .rtw-banner-text{
   position: absolute;
   top: 27%;
-  background-color: rgb(2 2 2 / 38%);
+  width: 100%;
+}
+
+/* 991px  */
+@media (min-width: 991px) { 
+  .site_header_name span{
+    font-size: 70px;
+  }
+  .rtw-banner img{
+    height: 400px;
+  }
 }
 
 /*================ Siderbar ==============*/
