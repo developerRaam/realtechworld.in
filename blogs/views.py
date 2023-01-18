@@ -9,7 +9,7 @@ from django.core.paginator import Paginator
 def Blogs(request):    
     posts = BlogPost.objects.all().order_by('-on_date')
     # Show 2 objects per page
-    paginator = Paginator(posts, 15) 
+    paginator = Paginator(posts, 10) 
     page = request.GET.get('page')
     objects = paginator.get_page(page)
         
@@ -40,17 +40,15 @@ def BlogDetail(request, slug):
 
 #================= Filter by category ============
 def Filter_Category(request, cat_slug):
-    posts = BlogPost.objects.all().order_by('-views')[:10]
     cat = Category.objects.get(slug=cat_slug)
     category_name = cat.category_name
     filter_cat = BlogPost.objects.filter(category_id_id=cat.id).order_by('-on_date')
     # Show 2 objects per page
-    paginator = Paginator(filter_cat, 15) 
+    paginator = Paginator(filter_cat, 10) 
     page = request.GET.get('page')
     filter_cat = paginator.get_page(page)
     context = {
         "objects":filter_cat,
-        "posts":posts, 
         "category_name":category_name
     }
     return render(request, "blogs/category-post.html",context)

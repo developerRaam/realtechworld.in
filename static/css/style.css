@@ -132,6 +132,9 @@ span.copyText {
   color: rgb(4, 163, 190);
   top:0;
 }
+.rtw_visited_link{
+  font-size: 14px;
+}
 .rtw_visited_link:visited{
   color: blue !important;
 }

@@ -20,6 +20,10 @@ def Home(request):
     return render(request, "apps/home.html",context)
 
 #==============================  All tools ==========================================
+def SiteMap(request):
+    return render(request, "sitemap.xml")
+
+#==============================  All tools ==========================================
 def Tools(request):
     return render(request, "apps/tools.html")
 

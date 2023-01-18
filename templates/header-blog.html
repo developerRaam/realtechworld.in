@@ -11,7 +11,9 @@
       <ul class="navbar-list mb-0">
           <li><a class="navbar-link" href="/blogs">Home</a></li>
           {% for cat in blog_category %}
-            <li><a class="navbar-link" href="{% url 'category' cat_slug=cat.slug %}">{{cat.category_name}}</a></li>
+              {% if cat.slug != 'uncategory' %}
+                <li><a class="navbar-link" href="{% url 'category' cat_slug=cat.slug %}">{{cat.category_name}}</a></li>
+              {% endif %}
           {% endfor %}
       </ul>
   </nav>

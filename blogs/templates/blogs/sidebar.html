@@ -18,7 +18,7 @@
     <div>
         {% for data in side_bar_title %}
         <div class="d-flex rtw-border-bottom py-2">
-            <i class="fa-sharp fa-solid fa-angle-right me-2 mt-1"></i>
+            <i class="fa-sharp fa-solid fa-angle-right me-2 mt-1" style="font-size:12px"></i>
             <a class="text-decoration-none text-dark blog-post-btn rtw_visited_link" href="{% url 'blog-detail' slug=data.slug %}">{{data.title}}</a>
         </div>
         {% endfor %}
@@ -31,7 +31,7 @@
     <div>
         {% for data in blog_category %}
             <div class="d-flex rtw-border-bottom py-2">
-                <i class="fa-sharp fa-solid fa-angle-right me-2 mt-1"></i>
+                <i class="fa-sharp fa-solid fa-angle-right me-2 mt-1" style="font-size:12px"></i>
                 <a class="text-decoration-none blog-post-btn text-dark rtw_visited_link" href="{% url 'category' cat_slug=data.slug %}">{{data.category_name}}</a>
             </div>
         {% endfor %}
