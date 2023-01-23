@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps',
     'blogs',
+    'motivation_quotes',
     'tinymce',
 ]
 

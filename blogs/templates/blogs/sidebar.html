@@ -1,5 +1,5 @@
 <!--Search bar-->
-<div class="card mb-2">
+<div class="mb-2">
     <div>
         <form action="{% url 'searching' %}" method="get">
             <div class="d-flex">
@@ -13,8 +13,11 @@
 </div>
 
 <!--Right side content-->
-<h5 class="mt-4">Read Post</h5>
-<div class="card mb-2">
+<div class="mt-4">
+    <span class="bg-dark text-white p-1">Recent Post</span>
+    <p class="w-100" style="border-bottom:2px solid #000"></p>
+</div>
+<div class="mb-2">
     <div>
         {% for data in side_bar_title %}
         <div class="d-flex rtw-border-bottom py-2">
@@ -26,8 +29,11 @@
 </div>
 
 <!--Category-->
-<h5 class="mt-4">Category</h5>
-<div class="card mb-3">
+<div class="mt-4">
+    <span class="bg-dark text-white p-1">Categories</span>
+    <p class="w-100" style="border-bottom:2px solid #000"></p>
+</div>
+<div class="mb-3">
     <div>
         {% for data in blog_category %}
             <div class="d-flex rtw-border-bottom py-2">
@@ -41,7 +47,7 @@
 {% comment %} <!--Filter year wise-->
 {% if month_date %}
 <h2 class="mt-4">Months</h2>
-<div class="card">
+<div class=">
     <div>
         {% for data in month_date %}
             <div class="border-bottom py-2">

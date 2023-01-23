@@ -5,6 +5,7 @@ from .models import *
 admin.site.register(Color)
 admin.site.register(Qrcode)
 admin.site.register(AddImageWaterMark)
+admin.site.register(Portfolio)
 
 class ContactUSAdmin(admin.ModelAdmin):
     list_display = ("name","email","Contact","message")

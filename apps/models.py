@@ -34,4 +34,12 @@ class ContactUS(models.Model):
     def __str__(self):
         return self.name
     
+class Portfolio(models.Model):
+    name = models.CharField(max_length=50,null=True, blank=True)
+    image = models.ImageField(upload_to="portfolio/",null=True, blank=True)
+    url = models.CharField(max_length=50)
+    on_date = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.name
     

@@ -7,7 +7,7 @@ urlpatterns = [
     path("sitemap/",views.SiteMap),
     path("contact-us/",views.ContactUs, name="contact-us"),
     path("services/",views.Services),
-    path("portfolio/",views.Portfolio),
+    path("portfolio/",views.OurPortfolio),
     path("about-us/",views.AboutUs, name="about-us"),
     path("tools/",views.Tools, name="tools"),
     path("add-watermark/",views.AddWatermark, name="add-watermark"),

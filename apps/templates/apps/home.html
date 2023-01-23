@@ -16,10 +16,14 @@
         <div class="row gy-4">
             {% if home_blog %}
             {% for data in home_blog %}
-            <div class="col-md-4">
+            <div class="col-md-6 col-lg-4">
                 <a class="text-dark text-decoration-none" href="{% url 'blog-detail' slug=data.slug %}">
                 <div class="card text-start h-100 shadow-sm">
-                  <img class="card-img-top" height="300" src="{{data.image.url}}" alt="{{data.title}}">
+                    {% if data.image %}
+                        <img class="card-img-top" height="300" src="{{data.image.url}}" alt="{{data.title}}">
+                    {% else %}
+                    <img class="card-img-top" height="300" src="{% static 'images/image-not-available.png' %}" alt="{{data.title}}">
+                    {% endif %}
                   <div class="card-body">
                     <h4 class="card-title fs-5">{{data.title}}</h4>
                     <p class="card-text">{{data.sub_title|slice:150}}...</p>
@@ -30,12 +34,47 @@
             {% endfor %}
             {% endif %}
         </div>
-        <p class="text-center mt-3">
-            <a class="btn btn-primary px-3 p-2" href="/blogs">Read More</a>
-        </p>
     </div>
 </section>
 
+<!--Blog filter by category-->
+<section class="bg-white pb-5">
+    <div class="container">
+        {% if category and posts %}
+            {% for cat in category %}
+                <div style="margin-top:60px">
+                    <span class="bg-dark text-white p-1 px-3">{{cat.category_name}}</span>
+                    <p class="w-100" style="border-bottom:2px solid #000"></p>
+                </div>
+                <div class="row gy-3 mt-1">
+                    {% for post in posts %}
+                    {% if cat.id == post.category_id_id %}                           
+                        <div class="col-md-6 col-lg-4 col-xl-4">
+                            <div>
+                                <a class="text-dark text-decoration-none" href="{% url 'blog-detail' slug=post.slug %}">
+                                    <div class="d-flex">
+                                        <div>
+                                            {% if post.image %}
+                                            <img height="70" width="100" src="{{post.image.url}}" alt="{{post.title}}">
+                                            {% else %}
+                                            <img height="70" width="100" src="{% static 'images/image-not-available.png' %}" alt="{{data.title}}">
+                                            {% endif %}
+                                        </div>
+                                        <div class="ms-2">
+                                            <h2 class="mb-0" style="font-size:14px;font-weight:500">{{post.title}}</h2>
+                                            <span class="text-muted" style="font-size:12px">{{post.on_date|date:"d M Y"}}</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</section>
 
  <!-- end subscribe section -->
 {% endblock content %}

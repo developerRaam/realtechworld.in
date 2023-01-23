@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect,HttpResponse
 from .models import *
-from blogs.models import BlogPost
+from blogs.models import BlogPost,Category
 from PIL import Image, ImageDraw, ImageFont
 from mimetypes import MimeTypes
 import qrcode
@@ -13,9 +13,24 @@ import boto3
 
 #==============================  Home ==========================================
 def Home(request):
-    home_blog = BlogPost.objects.all().order_by('-on_date')[0:6]
+    home_blog = BlogPost.objects.all().order_by('-on_date')[0:3]
+    category = Category.objects.all()
+    posts = BlogPost.objects.all().order_by('-on_date')
+    # Filter data by category ID
+    data = []
+    count = 0
+    for cat in category:
+        for post in posts:
+            if cat.id == post.category_id_id:
+                if count < 6:
+                    d = post
+                    data.append(d)
+                count = count + 1
+        count = 0 #reset
     context = {
-        'home_blog':home_blog
+        'home_blog':home_blog,
+        'category':category,
+        'posts':data,
     }
     return render(request, "apps/home.html",context)
 
@@ -56,8 +71,12 @@ def Services(request):
     return render(request, "services.html")
 
 #==============================  All tools ==========================================
-def Portfolio(request):
-    return render(request, "portfolio.html")
+def OurPortfolio(request):
+    portfolio = Portfolio.objects.all()
+    context={
+        'portfolio':portfolio
+    }
+    return render(request, "portfolio.html",context)
 
 #==============================  Add watermark ==========================================
 def CopyrightApply(input_path, text)->str:

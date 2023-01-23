@@ -14,7 +14,7 @@ class Category(models.Model):
 
 
 class BlogPost(models.Model):
-    category_id = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category_id = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name="Category Name")
     title = models.CharField(max_length=255)
     sub_title = models.CharField(max_length=255,null=True, blank=True)
     image = models.ImageField(upload_to="blogs/posts/",blank=True, null=True)

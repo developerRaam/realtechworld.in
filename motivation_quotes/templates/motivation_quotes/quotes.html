@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+    {% include "header.html" %}
+{% endblock header %}
+
+{% block title %}Quotes | {{site_name}}{% endblock %}
+
+{% block content %}
+
+    <section style="background: #fff">
+        <div class="container">
+            <div class="d-flex justify-content-center pt-4">
+                <div class="col-md-10">
+                    <div class="mt-2">
+                        <span class="bg-dark text-white p-1 px-3 fs-5">Motivational Quotes</span>
+                        <p class="w-100" style="border-bottom:2px solid #000"></p>
+                    </div>
+                    {% if objects %}
+                        {% for quote in objects %}
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="card-text fs-5">{{quote.quote_name | safe}}</div>
+                                </div>
+                                <div class="bg-light p-3">
+                                    <div class="pt-1">
+                                        <a class="text-decoration-none" href="">
+                                            <span class="border border-secondary quote-like-dislike-btn me-3 text-success">
+                                                <i class="fa-regular fa-thumbs-up fs-4"></i>
+                                                <span>0</span>
+                                            </span>
+                                        </a>
+                                        <a class="text-decoration-none" href="">
+                                            <span class="border border-secondary quote-like-dislike-btn text-danger">
+                                                <i class="fa-regular fa-thumbs-down fs-4"></i>
+                                                <span>0</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    <!--Pagination-->
+                    {% include "pagination.html" %}
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}
