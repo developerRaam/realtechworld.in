@@ -20,9 +20,9 @@
                 <a class="text-dark text-decoration-none" href="{% url 'blog-detail' slug=data.slug %}">
                 <div class="card text-start h-100 shadow-sm">
                     {% if data.image %}
-                        <img class="card-img-top" height="300" src="{{data.image.url}}" alt="{{data.title}}">
+                        <img class="card-img-top" height="250" src="{{data.image.url}}" alt="{{data.title}}">
                     {% else %}
-                    <img class="card-img-top" height="300" src="{% static 'images/image-not-available.png' %}" alt="{{data.title}}">
+                    <img class="card-img-top" height="250" src="{% static 'images/image-not-available.png' %}" alt="{{data.title}}">
                     {% endif %}
                   <div class="card-body">
                     <h4 class="card-title fs-5">{{data.title}}</h4>

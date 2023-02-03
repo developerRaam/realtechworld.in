@@ -12,9 +12,9 @@
     </div>
 </div>
 
-<!--Right side content-->
+<!--Right Recent Post-->
 <div class="mt-4">
-    <span class="bg-dark text-white p-1">Recent Post</span>
+    <span class="bg-dark text-white p-1">Recent Posts</span>
     <p class="w-100" style="border-bottom:2px solid #000"></p>
 </div>
 <div class="mb-2">
@@ -27,6 +27,26 @@
         {% endfor %}
     </div>
 </div>
+
+<!-- Releted post -->
+{% if related_post %}
+<div class="mt-4">
+    <span class="bg-dark text-white p-1">Related Posts</span>
+    <p class="w-100" style="border-bottom:2px solid #000"></p>
+</div>
+<div class="mb-2">
+    <div>
+        {% for data in related_post %}
+            {% if data.id != product.id %}
+            <div class="d-flex rtw-border-bottom py-2">
+                <i class="fa-sharp fa-solid fa-angle-right me-2 mt-1" style="font-size:12px"></i>
+                <a class="text-decoration-none text-dark blog-post-btn rtw_visited_link" href="{% url 'blog-detail' slug=data.slug %}">{{data.title}}</a>
+            </div>
+            {%endif%}
+        {% endfor %}
+    </div>
+</div>
+{%endif%}
 
 <!--Category-->
 <div class="mt-4">

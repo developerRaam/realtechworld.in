@@ -2,7 +2,7 @@ from blogs.models import Category,BlogPost
 
 def BlogCategory(request):
     blog_category = Category.objects.all()
-    side_bar_title = BlogPost.objects.all().order_by('-on_date')[:7]
+    side_bar_title = BlogPost.objects.all().order_by('-on_date')[:5]
     month_date = []
     for i in side_bar_title:
         d = i.on_date.strftime("%B-%Y")

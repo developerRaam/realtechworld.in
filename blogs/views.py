@@ -23,6 +23,8 @@ def Blogs(request):
 def BlogDetail(request, slug):    
     posts = BlogPost.objects.all().order_by('-on_date')
     product = BlogPost.objects.get(slug=slug)
+    category_id = product.category_id_id
+    related_post = BlogPost.objects.filter(category_id_id=category_id).order_by('-on_date')[:10]
     # Update views
     product.views = int(product.views) + 1
     product.save()
@@ -35,6 +37,8 @@ def BlogDetail(request, slug):
         "product":product,
         "posts":posts, 
         "comment":comment,
+        "related_post":related_post,
+        "category_id":category_id
     }
     return render(request, "blogs/post-details.html",context)
 
