@@ -9,7 +9,7 @@
 
   <nav class="navbar">
       <ul class="navbar-list mb-0">
-          <li><a class="navbar-link" href="/blog">Home</a></li>
+          <li><a class="navbar-link" href="/blogs">Home</a></li>
           {% for cat in blog_category %}
               {% if cat.slug != 'uncategory' %}
                 <li><a class="navbar-link" href="{% url 'category' cat_slug=cat.slug %}">{{cat.category_name}}</a></li>
