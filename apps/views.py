@@ -38,6 +38,13 @@ def Home(request):
 def SiteMap(request):
     return render(request, "sitemap.xml")
 
+#==============================  ads.txt ==========================================
+def AdsTxt(request):
+    f = open('abs.txt', 'r')
+    file_content = f.read()
+    f.close()
+    return HttpResponse(file_content, content_type="text/plain")
+
 #==============================  All tools ==========================================
 def Tools(request):
     return render(request, "apps/tools.html")
