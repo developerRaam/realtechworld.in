@@ -230,3 +230,4 @@ def AmazonProduct(request):
     output = response.text
     
     return render(request, "apps/amazon.html",{'output':output})
+
