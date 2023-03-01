@@ -8,8 +8,12 @@
             <div class="row">
                 {% if data.image %}
                 <div class="col-md-3">
-                    <img class="w-100" src="{{data.image.url}}" alt="">
-                </div> 
+                    <img class="w-100" src="{{data.image.url}}" alt="{{data.title}}" loading="lazy" />
+                </div>
+                {% else %}
+                <div class="col-md-3">
+                    <img class="w-100" src="{% static 'images/image-not-available.png' %}" alt="{{data.title}}" loading="lazy" />
+                </div>
                 {% endif %}
                 <div class="col-md-9">
                     <p class="mb-2 text-muted">

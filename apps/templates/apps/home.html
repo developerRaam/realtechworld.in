@@ -20,9 +20,9 @@
                 <a class="text-dark text-decoration-none" href="{% url 'blog-detail' slug=data.slug %}">
                 <div class="card text-start h-100 shadow-sm">
                     {% if data.image %}
-                        <img class="card-img-top" height="250" src="{{data.image.url}}" alt="{{data.title}}">
+                        <img class="card-img-top" height="250" src="{{data.image.url}}" alt="{{data.title}}" loading="lazy" />
                     {% else %}
-                    <img class="card-img-top" height="250" src="{% static 'images/image-not-available.png' %}" alt="{{data.title}}">
+                    <img class="card-img-top" height="250" src="{% static 'images/image-not-available.png' %}" alt="{{data.title}}" loading="lazy" />
                     {% endif %}
                   <div class="card-body">
                     <h4 class="card-title fs-5">{{data.title}}</h4>
@@ -55,9 +55,9 @@
                                     <div class="d-flex">
                                         <div>
                                             {% if post.image %}
-                                            <img height="70" width="100" src="{{post.image.url}}" alt="{{post.title}}">
+                                            <img height="70" width="100" src="{{post.image.url}}" alt="{{post.title}}" loading="lazy" />
                                             {% else %}
-                                            <img height="70" width="100" src="{% static 'images/image-not-available.png' %}" alt="{{data.title}}">
+                                            <img height="70" width="100" src="{% static 'images/image-not-available.png' %}" alt="{{data.title}}" loading="lazy" />
                                             {% endif %}
                                         </div>
                                         <div class="ms-2">
