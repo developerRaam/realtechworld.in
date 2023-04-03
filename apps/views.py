@@ -203,20 +203,6 @@ def GeneratePassword(request):
     return render(request, "apps/generate-password.html",{'password':password})
 
 
-# def AmazonProduct(request):
-#     client = boto3.client('product-advertising-api', region_name='in', 
-#                       aws_access_key_id='<YOUR ACCESS KEY>', 
-#                       aws_secret_access_key='<YOUR SECRET KEY>')
-
-#     response = client.search_items(
-#         SearchIndex='All',
-#         Keywords='<YOUR SEARCH TERM>',
-#         ResponseGroup='Images,ItemAttributes'
-#     )
-
-#     items = response['SearchResult']['Items']
-#     return render(request, "apps/amazon.html",{'items':items})
-
 def AmazonProduct(request):
     url = "https://moviesminidatabase.p.rapidapi.com/movie/id/%7Bmovie_id%7D/cast/"
 

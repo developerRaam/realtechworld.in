@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect,HttpResponse
 from .models import Category, BlogPost,Comments
 from django.core.paginator import Paginator
+from analytics.models import Analytic
 
 # Create your views here.
 #============= Blogs ========================
@@ -28,6 +29,9 @@ def BlogDetail(request, slug):
     # Update views
     product.views = int(product.views) + 1
     product.save()
+    #Analytics
+    alt = Analytic.objects.create(blog_id_id=product.id)
+    alt.save()
     # date 
     on_date = product.on_date.strftime("%b-%m-%Y")
     #Show comments

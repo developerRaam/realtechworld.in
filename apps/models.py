@@ -26,8 +26,8 @@ class Qrcode(models.Model):
     
 class ContactUS(models.Model):
     name = models.CharField(max_length=50,editable=None)
-    email = models.CharField(max_length=50,editable=None)
-    Contact = models.CharField(max_length=13,editable=None)
+    email = models.EmailField(max_length=50,editable=None)
+    Contact =models.BigIntegerField(editable=None)
     message = models.TextField(editable=None)
     on_date = models.DateTimeField(auto_now_add=True)
     
