@@ -18,4 +18,6 @@ urlpatterns = [
     path("box-shadow/",views.BoxShadow),
     path("generate-password/",views.GeneratePassword),
     path("amazon/",views.AmazonProduct),
+    
+    path("geolocation/",views.GeoLocation)
 ]

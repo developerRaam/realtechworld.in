@@ -8,7 +8,8 @@ import os, random, math, requests
 from datetime import datetime
 from django.contrib import messages
 from django.core.paginator import Paginator
-import boto3
+# importing geopy library
+from geopy.geocoders import Nominatim
 # Create your views here.
 
 #==============================  Home ==========================================
@@ -217,3 +218,21 @@ def AmazonProduct(request):
     
     return render(request, "apps/amazon.html",{'output':output})
 
+def GeoLocation(request):
+    # calling the Nominatim tool
+    loc = Nominatim(user_agent="GetLoc")
+    
+    # entering the location name
+    getLoc = loc.geocode('me')
+    
+    # printing address
+    print(getLoc.address)
+    
+    # printing latitude and longitude
+    print("Latitude = ", getLoc.latitude, "\n")
+    print("Longitude = ", getLoc.longitude)
+    
+    context={
+        'getLoc':getLoc
+    }
+    return render(request, "geolocation.html",context)
