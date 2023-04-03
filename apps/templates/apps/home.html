@@ -10,6 +10,11 @@
 <!-- product section -->
 {% include 'apps/slider.html' %}
 
+<!--Ads-->
+<div class="container">
+    {% include 'ads/horizontal.html' %}
+</div>
+
 <!-- Blogs -->
 <section class="bg-light w-100">
     <div class="container py-4">
@@ -70,6 +75,8 @@
                         </div>
                     {% endif %}
                 {% endfor %}
+                <!--Ads-->
+                {% include 'ads/horizontal.html' %}
                 </div>
             {% endfor %}
         {% endif %}

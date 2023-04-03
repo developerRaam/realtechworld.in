@@ -28,6 +28,10 @@
         </div>
     </a>
 </div>
+<!--Ads-->
+{% if data.id|divisibleby:"3" %}
+    {% include 'ads/horizontal.html' %}
+{% endif %}
 {% endfor %}
 {% else %}
 <div class="mt-5 d-flex justify-content-center">

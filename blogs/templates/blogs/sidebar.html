@@ -64,16 +64,5 @@
     </div>
 </div>
 
-{% comment %} <!--Filter year wise-->
-{% if month_date %}
-<h2 class="mt-4">Months</h2>
-<div class=">
-    <div>
-        {% for data in month_date %}
-            <div class="border-bottom py-2">
-                <a class="text-decoration-none blog-post-btn text-dark" href="">{{data}}</a>
-            </div>
-        {% endfor %}
-    </div>
-</div>
-{% endif %} {% endcomment %}
+<!--vertical sidebar ads-->
+{% include 'ads/sidebar-vertical.html' %}

@@ -18,7 +18,7 @@ class BlogPost(models.Model):
     title = models.CharField(max_length=255)
     sub_title = models.CharField(max_length=255,null=True, blank=True)
     image = models.ImageField(upload_to="blogs/posts/",blank=True, null=True)
-    slug = AutoSlugField(populate_from='title', unique=True,null=True, always_update=True)
+    slug = AutoSlugField(populate_from='title', max_length=255, unique=True,null=True, always_update=True)
     views = models.CharField(max_length=11,null=True, blank=None, editable=None, default="0")
     post_by = models.CharField(max_length=30, null=True, blank=None, default="RealTechWord", editable=None)
     description = HTMLField(null=True, blank=True)
