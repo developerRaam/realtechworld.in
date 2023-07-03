@@ -1,4 +1,4 @@
-#!D:\Django\realtechworld\venv\Scripts\python.exe
+#!d:\django\realtechworld\venv\scripts\python.exe
 
 import sys
 import json

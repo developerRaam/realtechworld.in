@@ -17,7 +17,7 @@
                 {% endif %}
                 <div class="col-md-9">
                     <p class="mb-2 text-muted">
-                        <span>{{data.on_date|date:"d M Y"}}</span> |
+                        {% comment %} <span>{{data.on_date|date:"d M Y"}}</span> | {% endcomment %}
                         <span>{{data.category_id}}</span> |
                         <span>{{data.post_by}}</span>
                     </p>
@@ -28,10 +28,12 @@
         </div>
     </a>
 </div>
+
 <!--Ads-->
 {% if data.id|divisibleby:"3" %}
     {% include 'ads/horizontal.html' %}
 {% endif %}
+
 {% endfor %}
 {% else %}
 <div class="mt-5 d-flex justify-content-center">

@@ -8,5 +8,5 @@ admin.site.register(AddImageWaterMark)
 admin.site.register(Portfolio)
 
 class ContactUSAdmin(admin.ModelAdmin):
-    list_display = ("name","email","Contact","message")
+    list_display = ("name","email","Contact","message","on_date")
 admin.site.register(ContactUS,ContactUSAdmin)

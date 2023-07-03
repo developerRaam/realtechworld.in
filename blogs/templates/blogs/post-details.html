@@ -17,9 +17,9 @@
                         <div class="mt-2 mb-4">
                             <h1>{{product.title}}</h1>
                             <p class="mb-2 text-muted">
-                                <span>{{product.on_date|date:"d M Y"}}</span> |
+                                {% comment %} <span>{{product.on_date|date:"d M Y"}}</span> | {% endcomment %}
                                 {% comment %} <span>{{product.category_id}}</span> | {% endcomment %}
-                                <span>{{product.post_by}}</span> |
+                                <span>{{product.post_by}}</span>
                                 {% comment %} <span>views:{{product.views}}</span> {% endcomment %}
                             </p>
                         </div>

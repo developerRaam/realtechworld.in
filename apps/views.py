@@ -8,8 +8,7 @@ import os, random, math, requests
 from datetime import datetime
 from django.contrib import messages
 from django.core.paginator import Paginator
-# importing geopy library
-from geopy.geocoders import Nominatim
+import boto3
 # Create your views here.
 
 #==============================  Home ==========================================
@@ -38,10 +37,10 @@ def Home(request):
 #==============================  All tools ==========================================
 def SiteMap(request):
     return render(request, "sitemap.xml")
-
+    
 #==============================  ads.txt ==========================================
 def AdsTxt(request):
-    f = open('abs.txt', 'r')
+    f = open('ads.txt', 'r')
     file_content = f.read()
     f.close()
     return HttpResponse(file_content, content_type="text/plain")
@@ -106,7 +105,7 @@ def CopyrightApply(input_path, text)->str:
     output_path = f'static/images/watermark_output/{file_name}'
     photo.save(output_path)
     
-    return f'http://127.0.0.1:8000/images/watermark_output/{file_name}'
+    return f'https://realtechworld.in/images/watermark_output/{file_name}'
     
 def AddWatermark(request):
     if request.method == 'POST':
@@ -152,7 +151,7 @@ def GenerateQrcode(request):
         file_name = f'{uuid.uuid4()}.png'
         qr_output = f'static/images/qrcode_output/{file_name}'
         qr_img.save(qr_output)
-        q_output = f'http://127.0.0.1:8000/images/qrcode_output/{file_name}'
+        q_output = f'https://realtechworld.in/images/qrcode_output/{file_name}'
         return render(request, "apps/qrcode.html",{'qr_output':q_output})
     return render(request, "apps/qrcode.html")
 
@@ -204,6 +203,20 @@ def GeneratePassword(request):
     return render(request, "apps/generate-password.html",{'password':password})
 
 
+# def AmazonProduct(request):
+#     client = boto3.client('product-advertising-api', region_name='in', 
+#                       aws_access_key_id='<YOUR ACCESS KEY>', 
+#                       aws_secret_access_key='<YOUR SECRET KEY>')
+
+#     response = client.search_items(
+#         SearchIndex='All',
+#         Keywords='<YOUR SEARCH TERM>',
+#         ResponseGroup='Images,ItemAttributes'
+#     )
+
+#     items = response['SearchResult']['Items']
+#     return render(request, "apps/amazon.html",{'items':items})
+
 def AmazonProduct(request):
     url = "https://moviesminidatabase.p.rapidapi.com/movie/id/%7Bmovie_id%7D/cast/"
 
@@ -217,22 +230,3 @@ def AmazonProduct(request):
     output = response.text
     
     return render(request, "apps/amazon.html",{'output':output})
-
-def GeoLocation(request):
-    # calling the Nominatim tool
-    loc = Nominatim(user_agent="GetLoc")
-    
-    # entering the location name
-    getLoc = loc.geocode('me')
-    
-    # printing address
-    print(getLoc.address)
-    
-    # printing latitude and longitude
-    print("Latitude = ", getLoc.latitude, "\n")
-    print("Longitude = ", getLoc.longitude)
-    
-    context={
-        'getLoc':getLoc
-    }
-    return render(request, "geolocation.html",context)

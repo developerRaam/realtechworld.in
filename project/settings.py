@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'motivation_quotes',
     'tinymce',
     'analytics',
+    'dsa_questions',
 ]
 
 MIDDLEWARE = [

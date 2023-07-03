@@ -5,6 +5,7 @@ from .import views
 urlpatterns = [
     path("",views.Home, name="home"),
     path("sitemap/",views.SiteMap),
+    path("ads.txt/",views.AdsTxt),
     path("contact-us/",views.ContactUs, name="contact-us"),
     path("services/",views.Services),
     path("portfolio/",views.OurPortfolio),
@@ -18,6 +19,4 @@ urlpatterns = [
     path("box-shadow/",views.BoxShadow),
     path("generate-password/",views.GeneratePassword),
     path("amazon/",views.AmazonProduct),
-    
-    path("geolocation/",views.GeoLocation)
 ]
