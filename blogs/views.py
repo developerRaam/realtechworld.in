@@ -18,6 +18,8 @@ def Blogs(request):
         "posts":posts,
         "objects":objects,
     }
+    
+
     return render(request, "blogs/posts.html",context)
 
 #================= Detail page ============
