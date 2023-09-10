@@ -24,8 +24,8 @@ class SubCategory(models.Model):
 class DsaQuestion(models.Model):
     question_name = models.CharField(max_length=300, blank=True, null=True)
     slug = AutoSlugField(populate_from="question_name",unique=True,null=True, always_update=True)
-    cat_id = models.ForeignKey(Category, verbose_name="Category", on_delete=models.CASCADE)
-    sub_cat_id = models.ForeignKey(SubCategory, verbose_name="SubCategory", on_delete=models.CASCADE)
+    cat_id = models.ForeignKey(Category, verbose_name="Category",null=True,blank=True, on_delete=models.SET_NULL)
+    sub_cat_id = models.ForeignKey(SubCategory, verbose_name="SubCategory",null=True,blank=True, on_delete=models.SET_NULL)
     description = HTMLField(null=True, blank=True)
     c_language = HTMLField(null=True, blank=True)
     cpp_language = HTMLField(null=True, blank=True)
@@ -48,6 +48,6 @@ class Tags(models.Model):
 
 class SelectTags(models.Model):
     question_id = models.ForeignKey(DsaQuestion, on_delete=models.CASCADE)
-    tag = models.ForeignKey(Tags, verbose_name="Size", on_delete=models.CASCADE)
+    tag = models.ForeignKey(Tags, verbose_name="Tag", on_delete=models.CASCADE)
     class Meta:
         verbose_name_plural = 'Select Tag' 

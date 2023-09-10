@@ -1,0 +1,200 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+    {% include "header.html" %}
+{% endblock header %}
+
+{% block title %} {{question.question_name}} | {{site_name}}{% endblock %}
+
+
+{% block content %}
+
+<style>
+    .button:focus{
+        box-shadow:none !important;
+    }
+</style>
+
+<section class="container-fluid px-0">
+    <p class="text-center language_color py-1 fs-4"><a class="text-decoration-none text-white border-bottom" href="/problems"><i class="fa-solid fa-house text-white"></i> DSA Question and Solution</a></p>
+   <div class="d-flex justify-content-center">
+   <div class="col-md-11">
+    <div class="row">
+        <div class="col-md-6 bg-white p-0">
+           <!-- Body of content -->
+           <div class="bg-white p-4">
+            {% if question %}
+                <div class="">
+                    <div class="d-flex justify-content-between">
+                        <h2 class="mb-4"><span class="text-muted">#</span> {{question.question_name}}</h2>
+                        {% if question.c_language or question.cpp_language or question.javascript or question.java or question.python %}
+                        {% comment %} <a href="#view-code" class="text-decoration-none fs-5"><i class="fa-regular fa-eye"></i> View Code</a> {% endcomment %}
+                        {% endif %}
+                    </div>
+                    <div>{{question.description | safe}}</div>
+                </div>
+            {% endif %}
+           </div>
+        </div>
+        <div class="col-md-6">
+           <div class="p-2">
+                {% if question.c_language or question.cpp_language or question.javascript or question.java or question.python %}
+                <div class="p-2 text-center" id="view-code">
+                    {% if question.c_language %}<button class="btn button btn-outline-primary mb-1" id="c_language_btn">C language</button>{% endif %}
+                    {% if question.cpp_language %}<button class="btn button btn-outline-primary mb-1" id="cpp_language_btn">C++ Language</button>{% endif %}
+                    {% if question.java %}<button class="btn button btn-outline-primary mb-1" id="java_btn">Java</button>{% endif %}
+                    {% if question.javascript %}<button class="btn button btn-outline-primary mb-1" id="javascript_btn">JavaScript</button>{% endif %}
+                    {% if question.python %}<button class="btn button btn-outline-primary mb-1" id="python_btn">Python</button>{% endif %}
+                </div>
+                {% endif %}
+                <div class="" id="view_content">
+                    <div style="display:none" id="c_language_box">
+                        <p class="language_color m-0 mt-2 p-2">C Language</p>
+                        <div class="language-c" id="c_language_content">{{question.c_language | safe}}</div>
+                    </div>
+
+                    <div style="display:none" id="cpp_language_box">
+                        <p class="language_color m-0 mt-2 p-2">C++ Language</p>
+                        <div class="language-cpp" id="cpp_language_content">{{question.cpp_language | safe}}</div>
+                    </div>
+
+                    <div style="display:none" id="javascript_box">
+                        <p class="language_color m-0 mt-2 p-2">JavaScript</p>
+                        <div class="language-javascript" id="javascript_content">{{question.javascript | safe}}</div>
+                    </div>
+
+                    <div style="display:block" id="java_box" class="language-java">
+                        <p class="language_color m-0 mt-2 p-2">Java</p>
+                        <div class="language-java" id="java_content">{{question.java | safe}}</div>
+                    </div>
+                    
+                    <div style="display:none" id="python_box" class="language-python">
+                        <p class="language_color m-0 mt-2 p-2">Python</p>
+                        <div class="language-python" id="python_content">{{question.python | safe}}</div>
+                    </div>
+                </div>
+           </div>
+        </div>
+    </div>
+   </div>
+   </div>
+</section>
+
+<script>
+    // dsa questions
+
+    $(document).ready(function(){
+        let c_language_box = document.getElementById("c_language_box")
+        let cpp_language_box = document.getElementById("cpp_language_box")
+        let javascript_box = document.getElementById("javascript_box")
+        let java_box = document.getElementById("java_box")
+        let python_box = document.getElementById("python_box")
+
+        let c_language_content = document.getElementById("c_language_content")
+        let cpp_language_content = document.getElementById("cpp_language_content")
+        let javascript_content = document.getElementById("javascript_content")
+        let java_content = document.getElementById("java_content")
+        let python_content = document.getElementById("python_content")
+
+        if(c_language_content.innerText != ''){
+            document.querySelector('#c_language_btn').addEventListener("click", function(){
+                c_language_box.style.display = "block"
+                cpp_language_box.style.display = "none"
+                javascript_box.style.display = "none"
+                java_box.style.display = "none"
+                python_box.style.display = "none"
+            });
+        }
+        if(cpp_language_content.innerText != ''){
+            document.querySelector('#cpp_language_btn').addEventListener("click", function(){
+                c_language_box.style.display = "none"
+                cpp_language_box.style.display = "block"
+                javascript_box.style.display = "none"
+                java_box.style.display = "none"
+                python_box.style.display = "none"
+            });
+        }
+        if(javascript_content.innerText != ''){
+            document.querySelector('#javascript_btn').addEventListener("click", function(){
+                c_language_box.style.display = "none"
+                cpp_language_box.style.display = "none"
+                javascript_box.style.display = "block"
+                java_box.style.display = "none"
+                python_box.style.display = "none"
+            });
+        }
+        if(java_content.innerText != ''){
+            document.querySelector('#java_btn').addEventListener("click", function(){
+                c_language_box.style.display = "none"
+                cpp_language_box.style.display = "none"
+                javascript_box.style.display = "none"
+                java_box.style.display = "block"
+                python_box.style.display = "none"
+            });
+        }
+        if(python_content.innerText != ''){
+            document.querySelector('#python_btn').addEventListener("click", function(){
+                c_language_box.style.display = "none"
+                cpp_language_box.style.display = "none"
+                javascript_box.style.display = "none"
+                java_box.style.display = "none"
+                python_box.style.display = "block"
+            });
+        }
+    })
+
+
+
+{% comment %}     
+    $(document).ready(function(){
+        // Define language content and boxes
+        const languages = [
+            { 
+                content: document.getElementById("c_language_content"), 
+                box: document.getElementById("c_language_box"), 
+                btn: document.querySelector('#c_language_btn') 
+            },
+            { 
+                content: document.getElementById("cpp_language_content"), 
+                box: document.getElementById("cpp_language_box"), 
+                btn: document.querySelector('#cpp_language_btn') 
+            },
+            { 
+                content: document.getElementById("javascript_content"), 
+                box: document.getElementById("javascript_box"), 
+                btn: document.querySelector('#javascript_btn') 
+            },
+            { 
+                content: document.getElementById("java_content"), 
+                box: document.getElementById("java_box"), 
+                btn: document.querySelector('#java_btn') 
+            },
+            { 
+                content: document.getElementById("python_content"), 
+                box: document.getElementById("python_box"), 
+                btn: document.querySelector('#python_btn')
+             }
+        ];
+    
+        // Function to hide all language boxes
+        function hideAllBoxes() {
+            languages.forEach(lang => lang.box.style.display = "none");
+        }
+    
+        // Add click event listeners to language buttons
+        languages.forEach(lang => {
+            if (lang.content.innerText !== '') {
+                lang.btn.addEventListener("click", function () {
+                    hideAllBoxes();
+                    lang.box.style.display = "block";
+                });
+            }
+        });
+    
+        // Initial hide for all boxes
+        hideAllBoxes();
+    });
+     {% endcomment %}
+</script>
+
+{% endblock content %}

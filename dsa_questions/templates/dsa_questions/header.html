@@ -1,0 +1,31 @@
+<nav class="bg-light p-2 py-3">
+    <div id="header-navbar">
+        <div class="d-flex justify-content-between align-items-center flex-wrap me-3">
+            <!-- left side navbar -->
+            <div class="toggle_btn" id="toggle_btn">
+                <span><i class="fa-solid fa-bars fs-3"></i></span>
+            </div>
+    
+            <div class="d-flex align-items-center gap-4">
+                <p class="fs-4 text-center mb-0" style="font-family:sans-serif;"><a href="/problems/" class="text-decoration-none text-dark"><i class="fa-solid fa-house text-primary"></i> DSA Questions and Solutions</a></p> 
+            </div>
+            <div class="d-flex align-items-center gap-4">
+                <form action="{% url 'searching' %}" method="get">
+                    <input type="text" class="p-1" name="q" value="{{search_bar}}" placeholder="Search...">
+                    <input type="submit" class="p-1" value="Search">
+                </form>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<script>
+    var currentUrl = window.location.href;
+    // Define the keyword you want to search for
+    var keyword = "search";
+    // Check if the keyword is present in the URL
+    if (currentUrl.indexOf(keyword) !== -1) {
+        document.getElementById("toggle_btn").style.display = "none"
+        document.getElementById("header-navbar").classList.add("container")
+    }
+</script>

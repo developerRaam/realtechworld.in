@@ -1,13 +1,187 @@
-<div class="bg-light">
-    <div class="p-3 py-5">
-        <h2>DSA Qusetions</h2>
+<div class="col-md-2 p-0 left_side_bar" id="left_side_bar">
+    <div class="p-2 left-sidebar-btn">
+        <button id="left-sidebar-btn" onclick="LeftSideBarOpen()"><i class="fa-solid fa-bars"></i></button>
     </div>
-
-    <div>
-        <ul style="line-height: 40px;">
-            <li class="list-unstyled"><a class="text-decoration-none text-muted fs-5" href="">Easy Question</a></li>
-            <li class="list-unstyled"><a class="text-decoration-none text-muted fs-5" href="">Medium Question</a></li>
-            <li class="list-unstyled"><a class="text-decoration-none text-muted fs-5" href="">Hard Question</a></li>
-        </ul>
+    <div class="p-2 h-100 d-lg-block LeftSideBar" id="LeftSideBar" style="background: linear-gradient(30deg, black, #025b64);">
+        <div class="float-end">
+            <button class="d-lg-none d-xl-none" id="close-btn" onclick="LeftSideBarClose()"><i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="h-100 ps-2">
+            <div class="p-3 py-4"></div>
+            <div class="ms-3">
+                <p class="text-light fs-5 mb-0"><i class="fa-solid fa-angle-right"></i> Difficulty</p>
+                {% for cat in categories.category %}
+                    <div>
+                        <input type="checkbox" class="difficulty" value="{{cat.id}}"><span class="text-white"> {{cat.name}}</span>
+                        {% csrf_token %}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="ms-3 mt-3">
+                <p class="text-light fs-5 mb-0"><i class="fa-solid fa-angle-right"></i> Topics</p>
+                {% for sub_cat in categories.sub_category %}
+                    <div>
+                        <input type="checkbox" class="topics" value="{{sub_cat.id}}"><span class="text-white"> {{sub_cat.name}}</span>
+                        {% csrf_token %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 </div>
+
+<script>
+
+    
+
+    $(document).ready(function(){
+        showQusetions()
+    })
+
+    // Show question
+    function showQusetions(){
+        const questionList = document.getElementById('question-list');
+        $.ajax({
+            type: 'GET',
+            url: '/problems/show-question/',
+            success: function(data) {
+                const responseArray = data.response;
+                const tags = data.tags;
+                if(data.success){
+                    for (let i = 0; i < responseArray.length; i++) {
+                        const id = responseArray[i].id;
+                        const questionName = responseArray[i].question_name;
+                        const slug = responseArray[i].slug;
+
+                        let html =`
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h2 style="font-weight:400">
+                                    <a target="blank" href="view/${slug}" class="text-decoration-none text-dark" style="font-family:sans-serif;">${questionName}</a>
+                                </h2>
+                                <!-- company tags --> 
+                                <div>
+                                    ${tags
+                                        .filter(tag => id === tag.question_id)
+                                        .map(tag => `
+                                            <span class="bg-light p-2 rounded">${tag.tag_name}</span>
+                                        `)
+                                        .join('')}
+                                </div>
+                            </div>
+                        </div>
+                        `;
+                        questionList.innerHTML += html;
+                    }
+                }
+            },
+            error: function(xhr, textStatus, errorThrown) {
+                console.log(xhr, textStatus, errorThrown);
+            }
+        })
+    }
+
+
+    // Filteration data
+    $(document).ready(function(){
+        let difficulty = document.querySelectorAll(".difficulty");
+        let topics = document.querySelectorAll(".topics");
+        let csrf_token = $('input[name="csrfmiddlewaretoken"]').val();
+        let message = document.getElementById("message");
+        const questionList = document.getElementById('question-list');
+
+        let difficultyItems = [];
+        let topicsItems = [];
+
+        difficulty.forEach(element => {
+            element.addEventListener("click", () => {
+                if (element.checked) {
+                    difficultyItems.push(element.value);
+                } else {
+                    difficultyItems = difficultyItems.filter(item => item !== element.value);
+                }
+                // Ajax hit
+                updateFilter();
+            });
+        });
+
+        topics.forEach(element2 => {
+            element2.addEventListener("click", () => {
+                if (element2.checked) {
+                    topicsItems.push(element2.value);
+                } else {
+                    topicsItems = topicsItems.filter(item => item !== element2.value);
+                }
+                // Ajax hit
+                updateFilter();
+            });
+        });
+
+        function updateFilter() {
+            let filterData = new FormData();
+            filterData.append('difficulty_Items', JSON.stringify(difficultyItems));
+            filterData.append('topics_Items', JSON.stringify(topicsItems));
+            filterData.append('csrfmiddlewaretoken', csrf_token);
+
+            let url = window.location.protocol +'//'+ window.location.host + "/"+window.location.pathname.split('/')[1]+'/filter/';
+
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: filterData,
+                processData: false,
+                contentType: false,
+                success: function(data) {
+                    const responseArray = data.response;
+                    const tags = data.tags;
+                    console.log(data)
+                    if(data.success){
+                        questionList.innerHTML = ""; // blank div before filter questions
+                        if (responseArray.length > 0) {
+                            document.getElementById("total_question").innerText = 'Total : '+responseArray.length;
+                            for (let i = 0; i < responseArray.length; i++) {
+                                const id = responseArray[i].id;
+                                const questionName = responseArray[i].question_name;
+                                const slug = responseArray[i].slug;
+
+                                let html =`
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h2 style="font-weight:400">
+                                            <a target="blank" href="view/${slug}" class="text-decoration-none text-dark" style="font-family:sans-serif;">${questionName}</a>
+                                        </h2>
+                                        <!-- company tags --> 
+                                        <div>
+                                            ${tags
+                                                .filter(tag => id === tag.question_id)
+                                                .map(tag => `
+                                                    <span class="bg-light p-2 rounded">${tag.tag_name}</span>
+                                                `)
+                                                .join('')}
+                                        </div>
+                                    </div>
+                                </div>
+                                `;
+                                questionList.innerHTML += html;
+                            }
+                            message.innerText = ''   
+                        }else{
+                            if(difficultyItems.length == 0 && topicsItems.length == 0){
+                                showQusetions()
+                                document.getElementById("total_question").innerText = '';
+                                message.innerText = "";
+                            }else{
+                                document.getElementById("total_question").innerText = '';
+                                message.innerText = "Not found any questions";
+                            }
+                        }
+                    }
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    console.log(xhr, textStatus, errorThrown);
+                }
+            });
+        }
+    })
+</script>

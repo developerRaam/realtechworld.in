@@ -1,11 +1,11 @@
-$(document).ready(function(){
-    $('#header-carousel').owlCarousel({
-      items : 1,
-      loop : true,
-      autoplay:true,
-      autoplayTimeout:2000,
-    });
-  })
+// $(document).ready(function(){
+//     $('#header-carousel').owlCarousel({
+//       items : 1,
+//       loop : true,
+//       autoplay:true,
+//       autoplayTimeout:2000,
+//     });
+//   })
 
 
 // head Navbar 
@@ -77,25 +77,6 @@ function LeftSideBarClose(){
 }
 
 
-//============================ Generate password =======================
-function generatePassword() {
-  // Set password length/complexity
-  var complexity = 8;
-  // Possible password values
-  var values = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+";
-  var password = "";
-  // Create for loop to choose password characters
-  for (var i = 0; i <= complexity; i++) {
-    password = password + values.charAt(Math.floor(Math.random() * Math.floor(values.length - 1)));
-  }
-  // Return the password
-  return password;
-}
-document.getElementById('generate-button').addEventListener('click', function() {
-  // Generate a password
-  var password = generatePassword();
-  document.getElementById("show-password").innerText = password
-});
 
 function passwordCopy(){
   const copyText = document.getElementById("show-password").innerText;
@@ -104,11 +85,13 @@ function passwordCopy(){
   if(copyText){
     document.getElementById("copyText").style.backgroundColor = "green";
     document.getElementById("copyText").style.padding = "5px";
-   document.getElementById("copyText").innerText = 'Copy';
-   setTimeout(() => {
+    document.getElementById("copyText").innerText = 'Copy';
+  setTimeout(() => {
       document.getElementById("copyText").innerHTML = "";
       document.getElementById("copyText").style.padding = "";
       document.getElementById("copyText").style.backgroundColor = "";
     }, 2000);
   } 
 }
+
+

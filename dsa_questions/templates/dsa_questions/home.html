@@ -9,28 +9,42 @@
 {% block content %}
 
 <section class="container-fluid px-0">
-    <div class="row">
-        <div class="col-md-3 bg-light">
-           {% include 'dsa_questions/sidebar.html' %}
-        </div>
-        <div class="col-md-9 bg-white p-0">
-           <nav class="bg-light p-3">
-            <div class="d-flex justify-content-between flex-wrap">
-                <div class="d-flex align-items-center gap-4">
-                    <a href="" class="fs-4">Menu</a>
-                    <h2>DSA Questions</h2> 
-                </div>
-                <div class="d-flex align-items-center gap-4">
-                    <form action="">
-                        <input type="text" placeholder="Search...">
-                        <input type="submit" value="Search">
-                    </form>
+    <div class="row justify-content-center dsa_main_container">
+        
+        {% include 'dsa_questions/sidebar.html' %}
+        
+        <div class="col-md-10 bg-white p-0" id="main_content">
+            <!-- Header -->
+        {% include 'dsa_questions/header.html' %}
 
+           <!-- Body of content -->
+           <div class="bg-white">
+                <div class="px-3 pe-4 pt-3">
+
+                    <!-- all filtered question-->
+                    <p id="total_question"></p>
+
+                    <!-- Show filtered data -->
+                    <div id="question-list"></div>
+                    
+                    <!-- show message -->
+                    <div id="message" class="text-center fs-4"></div>
                 </div>
-            </div>
-           </nav>
+           </div>
         </div>
     </div>
 </section>
+
+<script>
+    // left side navbar
+    let left_side_bar = document.getElementById("left_side_bar")
+    let toggle_btn = document.getElementById("toggle_btn")
+    let main_content = document.getElementById("main_content")
+    toggle_btn.addEventListener("click", ()=> {
+        left_side_bar.classList.toggle("toggle_show")
+        main_content.classList.toggle("col-md-12")
+        main_content.classList.toggle("ps-3")
+    })
+</script>
 
 {% endblock content %}

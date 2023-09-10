@@ -55,7 +55,7 @@ Responsive Codes
 ======================================= */
 
 /* 980px  */
-@media (max-width: 62em) {
+@media (max-width: 767px) {
   .mobile-navbar-btn {
     display: block;
     z-index: 999;
@@ -133,13 +133,15 @@ Responsive Codes
   padding-top: 60px;
 }
   #left-sidebar-btn{
-    width: 50px;
+    width: 40px;
     height: 35px;
-    border: 2px solid #1b2dad;
+    padding: 1px 3px 0px 5px;
+    border: 2px solid #000;
+    background: #000;
   }
   #left-sidebar-btn i{
     font-size: 30px;
-    color: #207078;
+    color: #fff;
   }
   #close-btn{
     width: 40px;

@@ -5,6 +5,7 @@ from dsa_questions.models import *
 
 admin.site.register(Category)
 admin.site.register(SubCategory)
+admin.site.register(Tags)
 
 class CompanyTags(admin.StackedInline):
     model = SelectTags
