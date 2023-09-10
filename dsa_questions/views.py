@@ -20,9 +20,50 @@ def DsaQuestionsHome(request):
 def QuestionView(request, slug):
     categories = all_categories()
     question = DsaQuestion.objects.get(slug=slug)
+
+    def Choose_one():
+        if question.c_language != '':
+            select_lang = {
+                'name':"c_language",
+                'class':"language-c",
+                'language':question.c_language,
+            }
+            return select_lang
+        elif question.cpp_language != '':
+            select_lang = {
+                'name':"cpp_language",
+                'class':"language-cpp",
+                'language':question.cpp_language,
+            }
+            return select_lang
+        elif question.java != '':
+            select_lang = {
+                'name':"java",
+                'class':"language-java",
+                'language':question.java,
+            }
+            return select_lang
+        elif question.javascript != '':
+            select_lang = {
+                'name':"javascript",
+                'class':"language-javascript",
+                'language':question.javascript,
+            }
+            return select_lang
+        elif question.python != '':
+            select_lang = {
+                'name':"python",
+                'class':"language-python",
+                'language':question.python,
+            }
+            return select_lang
+        
+    selected_language = Choose_one()
+
     context = {
         'categories':categories,
         'question':question,
+        'Choose_one':selected_language
     }
     return render(request, "dsa_questions/question-view.html",context)
 
