@@ -1,4 +1,4 @@
-<div class="col-md-2 p-0 left_side_bar position_sticky" id="left_side_bar">
+<div class="col-md-2 p-0 left_side_bar" id="left_side_bar">
     <div class="p-2 left-sidebar-btn">
         <button id="left-sidebar-btn" onclick="LeftSideBarOpen()"><i class="fa-solid fa-bars"></i></button>
     </div>
@@ -45,11 +45,23 @@
         $.ajax({
             type: 'GET',
             url: '/problems/show-question/',
+            beforeSend: function(){
+                document.getElementById("loader").classList.add("loader");
+                questionList.style.display = "none"
+                document.getElementById("total_question").style.display = "none"
+                document.getElementById("message").style.display = "none"
+            },
+            complete: function(){
+                document.getElementById("loader").classList.remove("loader");
+                questionList.style.display = "block"
+                document.getElementById("total_question").style.display = "block"
+                document.getElementById("message").style.display = "block"
+            },
             success: function(data) {
                 const responseArray = data.response;
                 const tags = data.tags;
                 if(data.success){
-                    for (let i = 0; i < responseArray.length; i++) {
+                    for (let i = 0; i< responseArray.length; i++) {
                         const id = responseArray[i].id;
                         const questionName = responseArray[i].question_name;
                         const slug = responseArray[i].slug;
@@ -132,6 +144,18 @@
                 data: filterData,
                 processData: false,
                 contentType: false,
+                beforeSend: function(){
+                    document.getElementById("loader").classList.add("loader");
+                    questionList.style.display = "none"
+                    document.getElementById("total_question").style.display = "none"
+                    document.getElementById("message").style.display = "none"
+                },
+                complete: function(){
+                    document.getElementById("loader").classList.remove("loader");
+                    questionList.style.display = "block"
+                    document.getElementById("total_question").style.display = "block"
+                    document.getElementById("message").style.display = "block"
+                },
                 success: function(data) {
                     const responseArray = data.response;
                     const tags = data.tags;
